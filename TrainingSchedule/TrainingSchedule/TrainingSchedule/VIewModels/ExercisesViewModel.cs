@@ -21,6 +21,11 @@ namespace TrainingSchedule.VIewModels
             exercisesList = workoutModel.listOfExercises;
         }
 
+        public string WorkoutTitle
+        {
+            get { return workoutModel.titleWorkout; }
+        }
+
         public bool IsEmpty
         {
             get { return isEmpty; }
@@ -51,10 +56,11 @@ namespace TrainingSchedule.VIewModels
         {
 
             List<ExerciseModel> tmpList = new List<ExerciseModel>();
-            tmpList.Add(new ExerciseModel() { titleExcercice = "sitting" });
-            tmpList.Add(new ExerciseModel() { titleExcercice = "by legs" });
-            //tmpList.Add(new WorkoutModel() { titleWorkout = "hello" });
-            //tmpList.Add(new WorkoutModel() { titleWorkout = "hello2" });
+            tmpList.Add(new ExerciseModel() { titleExcercice = "Присідання зі штангою", isDoneToday=true});
+            tmpList.Add(new ExerciseModel() { titleExcercice = "Жим лежачи і тому подібнні речі", isDoneToday=true });
+            tmpList.Add(new ExerciseModel() { titleExcercice = "Розводи гантелями", isDoneToday= false });
+            tmpList.Add(new ExerciseModel() { titleExcercice = "Жим вузьким хватом", isDoneToday = true });
+            
 
             //try
             //{

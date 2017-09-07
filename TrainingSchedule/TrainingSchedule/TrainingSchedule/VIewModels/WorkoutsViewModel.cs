@@ -50,8 +50,10 @@ namespace TrainingSchedule.VIewModels
         {          
 
             List<WorkoutModel> tmpList = new List<WorkoutModel>();
-            tmpList.Add(new WorkoutModel() { titleWorkout = "hello" });
-            tmpList.Add(new WorkoutModel() { titleWorkout = "hello2" });
+            tmpList.Add(new WorkoutModel() { titleWorkout = "Monday Workout", lastTrainingDate=DateTime.Today });
+            tmpList.Add(new WorkoutModel() { titleWorkout = "Wednesday Workout", lastTrainingDate = DateTime.Today });
+            tmpList.Add(new WorkoutModel() { titleWorkout = "Friday Workout", lastTrainingDate = DateTime.Today });
+           
 
             //try
             //{

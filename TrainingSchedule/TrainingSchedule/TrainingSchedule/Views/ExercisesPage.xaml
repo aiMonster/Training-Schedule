@@ -4,17 +4,23 @@
              x:Class="TrainingSchedule.Views.ExercisesPage">
 
     <StackLayout>
+        <StackLayout BackgroundColor="#00E676" Padding="10,15">
+            <Label Text="{Binding WorkoutTitle}" FontSize="Large" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+        
         <Label Text="No entries" FontSize="Large" Margin="10, 50" TextColor="Coral" HorizontalTextAlignment="Center" IsVisible="{Binding IsEmpty}"/>
         <ListView x:Name="ExercisesList" ItemsSource="{Binding ExercisesList}" ItemSelected="OnItemSelected" HasUnevenRows="True" SeparatorColor="Purple" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.View>
-                            <StackLayout HorizontalOptions="Center">
-                                <Label Text="{Binding titleExcercice}" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Salmon"/>
-                                <!--<Label Text="{Binding condition}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Blue" />
-                                <Label Text="{Binding date}" FontSize="Small" HorizontalTextAlignment="Center" TextColor="Green"/>-->
-
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="20,10">
+                                <StackLayout Orientation="Vertical">                                  
+                                    <Label Text="{Binding titleExcercice}" WidthRequest="200" FontSize="Medium" TextColor="#0097A7"/>
+                                </StackLayout>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
+                                    <Label Text="DONE" FontSize="Medium" VerticalOptions="Center"   TextColor="Green" IsVisible="{Binding isDoneToday}"/>
+                                </StackLayout>                                                            
                             </StackLayout>
                         </ViewCell.View>
                     </ViewCell>

@@ -4,14 +4,48 @@
              x:Class="TrainingSchedule.Views.OneExercisePage">
 
     <StackLayout>
+
+        <StackLayout BackgroundColor="#00E676" Padding="10,15">
+            <Label Text="{Binding ExerciseTitle}" FontSize="Large" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,0,0,15">
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <Entry Placeholder="reps" FontSize="Large"/>
+                    <Label Text="*" FontSize="Large"/>
+                    <Entry Placeholder="kgs" FontSize="Large"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Entry Placeholder="reps" FontSize="Large"/>
+                    <Label Text="*" FontSize="Large"/>
+                    <Entry Placeholder="kgs" FontSize="Large"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Entry Placeholder="reps" FontSize="Large"/>
+                    <Label Text="*" FontSize="Large"/>
+                    <Entry Placeholder="kgs" FontSize="Large"/>
+                </StackLayout>
+
+            </StackLayout>
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                <Button Text="Add"   BackgroundColor="#A9FFAC"/>
+            </StackLayout>
+        </StackLayout>
+
+
         <Label Text="No entries" FontSize="Large" Margin="10, 50" TextColor="Coral" HorizontalTextAlignment="Center" IsVisible="{Binding IsEmpty}"/>
+                
         <ListView x:Name="SetsList" ItemsSource="{Binding SetsList}" HasUnevenRows="True" SeparatorColor="Purple" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.View>
                             <StackLayout HorizontalOptions="Center">
-                                <Label Text="{Binding trainingData}" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Salmon"/>
+                                <Label Text="{Binding trainingData}" FontSize="Large" HorizontalTextAlignment="Center" TextColor="#00897B"/>
+                                <Label Text="{Binding Path=setDate, StringFormat='{}{0:dddd - dd/MM/yyyy}'}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#455A64" />
                                 <!--<Label Text="{Binding condition}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Blue" />
                                 <Label Text="{Binding date}" FontSize="Small" HorizontalTextAlignment="Center" TextColor="Green"/>-->
 
@@ -22,5 +56,13 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <StackLayout Orientation="Horizontal" Margin="0,5,0,0" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                <Label Text="00:00" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Button Text="Start"   BackgroundColor="#A9FFAC"/>
+            </StackLayout>
+        </StackLayout>
         </StackLayout>
 </ContentPage>

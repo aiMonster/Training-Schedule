@@ -20,6 +20,11 @@ namespace TrainingSchedule.VIewModels
             setsList = exerciseModel.listOfSets;
         }
 
+        public string ExerciseTitle
+        {
+            get { return exerciseModel.titleExcercice; }
+        }
+
         public bool IsEmpty
         {
             get { return isEmpty; }
@@ -50,8 +55,11 @@ namespace TrainingSchedule.VIewModels
         {
 
             List<SetModel> tmpList = new List<SetModel>();
-            tmpList.Add(new SetModel() { trainingData = "2*8|7*9|3*2" });
-            tmpList.Add(new SetModel() { trainingData = "2*9|4*23|31*12" });
+            tmpList.Add(new SetModel() { trainingData = "2*8 - 7*9 - 3*2" });
+            tmpList.Add(new SetModel() { trainingData = "2*9 - 4*23 - 31*12" });
+            tmpList.Add(new SetModel() { trainingData = "2*9 - 7*9 - 3*12" });
+            tmpList.Add(new SetModel() { trainingData = "2*6 - 7*29 - 3*12" });
+            tmpList.Add(new SetModel() { trainingData = "2*4 - 7*19 - 3*2" });
             //tmpList.Add(new WorkoutModel() { titleWorkout = "hello" });
             //tmpList.Add(new WorkoutModel() { titleWorkout = "hello2" });
 

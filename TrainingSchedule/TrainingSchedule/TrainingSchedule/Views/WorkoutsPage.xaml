@@ -12,9 +12,9 @@
                     <ViewCell>
                         <ViewCell.View>
                             <StackLayout HorizontalOptions="Center">
-                                <Label Text="{Binding titleWorkout}" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Salmon"/>
-                                <!--<Label Text="{Binding condition}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Blue" />
-                                <Label Text="{Binding date}" FontSize="Small" HorizontalTextAlignment="Center" TextColor="Green"/>-->
+                                <Label Text="{Binding Path=titleWorkout}" FontSize="Large" HorizontalTextAlignment="Center" TextColor="#26A69A"/>
+                                <Label Text="Last training:" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#455A64"/>
+                                <Label Text="{Binding Path=lastTrainingDate, StringFormat='{}{0:dddd - dd/MM/yyyy}'}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#455A64" />
 
                             </StackLayout>
                         </ViewCell.View>

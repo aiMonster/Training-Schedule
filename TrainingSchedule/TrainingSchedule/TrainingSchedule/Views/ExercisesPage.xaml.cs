@@ -29,8 +29,7 @@ namespace TrainingSchedule.Views
             if (e.SelectedItem != null)
             {
                 ExerciseModel model = (ExerciseModel)e.SelectedItem;
-                ((ListView)sender).SelectedItem = null;
-                //await App.Current.MainPage.DisplayAlert("ok!", "opening", "OK");
+                ((ListView)sender).SelectedItem = null;                
                 await Navigation.PushModalAsync(new OneExercisePage(model));
             }
 

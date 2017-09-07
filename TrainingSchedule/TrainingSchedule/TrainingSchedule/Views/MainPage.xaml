@@ -2,7 +2,9 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TrainingSchedule.Views"
-             x:Class="TrainingSchedule.Views.MainPage">
+             x:Class="TrainingSchedule.Views.MainPage"
+             BarBackgroundColor="#00E676"
+             BarTextColor="Black">
     <TabbedPage.Children>
         <local:WorkoutsPage/>
         <local:ProgressPage/>
