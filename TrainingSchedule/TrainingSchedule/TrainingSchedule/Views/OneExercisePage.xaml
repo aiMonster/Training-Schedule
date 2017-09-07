@@ -2,9 +2,25 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrainingSchedule.Views.OneExercisePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="One exercise page" />
+
+    <StackLayout>
+        <Label Text="No entries" FontSize="Large" Margin="10, 50" TextColor="Coral" HorizontalTextAlignment="Center" IsVisible="{Binding IsEmpty}"/>
+        <ListView x:Name="SetsList" ItemsSource="{Binding SetsList}" HasUnevenRows="True" SeparatorColor="Purple" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout HorizontalOptions="Center">
+                                <Label Text="{Binding trainingData}" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Salmon"/>
+                                <!--<Label Text="{Binding condition}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Blue" />
+                                <Label Text="{Binding date}" FontSize="Small" HorizontalTextAlignment="Center" TextColor="Green"/>-->
+
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
         </StackLayout>
-    </ContentPage.Content>
 </ContentPage>

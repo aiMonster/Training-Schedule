@@ -2,9 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrainingSchedule.Views.ExercisesPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="List of exercises" />
+
+    <StackLayout>
+        <Label Text="No entries" FontSize="Large" Margin="10, 50" TextColor="Coral" HorizontalTextAlignment="Center" IsVisible="{Binding IsEmpty}"/>
+        <ListView x:Name="ExercisesList" ItemsSource="{Binding ExercisesList}" ItemSelected="OnItemSelected" HasUnevenRows="True" SeparatorColor="Purple" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout HorizontalOptions="Center">
+                                <Label Text="{Binding titleExcercice}" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Salmon"/>
+                                <!--<Label Text="{Binding condition}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Blue" />
+                                <Label Text="{Binding date}" FontSize="Small" HorizontalTextAlignment="Center" TextColor="Green"/>-->
+
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout Orientation="Horizontal" Margin="0,5,0,0" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Button Text="Add"  BackgroundColor="#A9FFAC"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Button Text="Remove"   BackgroundColor="#FF7172"/>
+            </StackLayout>
         </StackLayout>
-    </ContentPage.Content>
+    </StackLayout>
 </ContentPage>
