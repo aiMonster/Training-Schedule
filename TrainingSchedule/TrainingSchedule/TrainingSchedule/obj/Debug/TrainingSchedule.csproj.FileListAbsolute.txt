@@ -17,3 +17,10 @@ F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\Trai
 F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\TrainingSchedule\obj\Debug\TrainingSchedule.Views.ProgressPage.xaml.g.cs
 F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\TrainingSchedule\obj\Debug\TrainingSchedule.Views.ExercisesPage.xaml.g.cs
 F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\TrainingSchedule\obj\Debug\TrainingSchedule.Views.OneExercisePage.xaml.g.cs
+F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\TrainingSchedule\bin\Debug\SQLite-net.dll
+F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\TrainingSchedule\bin\Debug\SQLitePCLRaw.batteries_green.dll
+F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\TrainingSchedule\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\TrainingSchedule\bin\Debug\SQLitePCLRaw.core.dll
+F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\TrainingSchedule\bin\Debug\SQLite-net.pdb
+F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\TrainingSchedule\bin\Debug\SQLite-net.xml
+F:\Users\User\Documents\Training-Schedule\TrainingSchedule\TrainingSchedule\TrainingSchedule\obj\Debug\TrainingSchedule.Views.AddWorkoutPage.xaml.g.cs

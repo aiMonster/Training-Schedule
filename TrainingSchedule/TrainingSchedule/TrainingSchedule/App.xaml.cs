@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TrainingSchedule.DbManager;
 using TrainingSchedule.Views;
 
 using Xamarin.Forms;
@@ -10,6 +11,20 @@ namespace TrainingSchedule
 {
     public partial class App : Application
     {
+        public const string WORKOUT_DATABASE_NAME = "trainings.db";
+        public static WorkoutRepository workoutDatabase;
+        public static WorkoutRepository WorkoutDatabase
+        {
+            get
+            {
+                if (workoutDatabase == null)
+                {
+                    workoutDatabase = new WorkoutRepository(WORKOUT_DATABASE_NAME);
+                }
+                return workoutDatabase;
+            }
+        }
+
         public App()
         {
             InitializeComponent();

@@ -10,6 +10,7 @@ namespace TrainingSchedule.Models
     public class WorkoutModel
     {
         public List<ExerciseModel> listOfExercises {get; set;}
+        public string trainingId { get; set; }
         public string titleWorkout { get; set; }
         public DateTime lastTrainingDate { get; set; }
     }
