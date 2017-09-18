@@ -5,6 +5,34 @@
     <ContentPage.Content>
         <StackLayout>
             <Entry Placeholder="Title" Text="{Binding MainTitle}" />
+
+            <ListView  ItemsSource="{Binding ExerciseList}" SeparatorVisibility="None" IsEnabled="False" VerticalOptions="Center" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout HorizontalOptions="Center" Orientation="Horizontal" Margin="0,0,0,10">
+                                    <Entry Placeholder="name of exercise" Text="{Binding Title}" HorizontalTextAlignment="Center" BackgroundColor="LightBlue" FontSize="Large" VerticalOptions="Center"/>
+                                    <Entry Placeholder="sets" Text="{Binding amountOfSets}" HorizontalTextAlignment="Center" BackgroundColor="LightYellow" FontSize="Large" VerticalOptions="Center" Keyboard="Numeric"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+
+            <StackLayout Orientation="Horizontal" Margin="0,5,0,0" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                    <Button Text="Add" Command="{Binding AddCommand}"  BackgroundColor="#A9FFAC"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                    <Button Text="Remove" Command="{Binding RemoveCommand}" BackgroundColor="#FF7172"/>
+                </StackLayout>
+            </StackLayout>
+
             <Button Text="Save" Command="{Binding SaveCommand}"/>
         </StackLayout>
     </ContentPage.Content>

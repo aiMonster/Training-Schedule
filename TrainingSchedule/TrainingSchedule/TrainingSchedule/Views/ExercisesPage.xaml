@@ -28,13 +28,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackLayout Orientation="Horizontal" Margin="0,5,0,0" VerticalOptions="End" HorizontalOptions="FillAndExpand">
-            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-                <Button Text="Add"  BackgroundColor="#A9FFAC"/>
-            </StackLayout>
-            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-                <Button Text="Remove"   BackgroundColor="#FF7172"/>
-            </StackLayout>
-        </StackLayout>
+        
     </StackLayout>
 </ContentPage>

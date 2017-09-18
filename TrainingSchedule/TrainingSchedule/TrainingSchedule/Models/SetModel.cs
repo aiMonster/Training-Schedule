@@ -10,5 +10,6 @@ namespace TrainingSchedule.Models
     {
         public DateTime setDate { get; set; }
         public string trainingData { get; set; }
+        public string comment { get; set; }
     }
 }

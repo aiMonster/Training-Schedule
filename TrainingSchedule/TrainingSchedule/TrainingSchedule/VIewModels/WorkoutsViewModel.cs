@@ -40,8 +40,7 @@ namespace TrainingSchedule.VIewModels
         }
 
         public async void Remove()
-        {
-            await App.Current.MainPage.DisplayAlert("i am here", "here", "OK");
+        {            
             try
             {
                 await App.WorkoutDatabase.CreateTable();
@@ -80,17 +79,14 @@ namespace TrainingSchedule.VIewModels
         public async void OnAppearing(object sender, EventArgs e)
         {          
 
-            List<WorkoutModel> tmpList = new List<WorkoutModel>();
-            //tmpList.Add(new WorkoutModel() { titleWorkout = "Monday Workout", lastTrainingDate=DateTime.Today });
-            //tmpList.Add(new WorkoutModel() { titleWorkout = "Wednesday Workout", lastTrainingDate = DateTime.Today });
-            //tmpList.Add(new WorkoutModel() { titleWorkout = "Friday Workout", lastTrainingDate = DateTime.Today });
-
+            List<WorkoutModel> tmpList = new List<WorkoutModel>();           
 
             try
             {
                 await App.WorkoutDatabase.CreateTable();
                 foreach (var a in await App.WorkoutDatabase.GetItemsAsync())
                 {
+                    a.trainingId = a.Id + "_";
                     tmpList.Insert(0, toDbModelConverter.Convert(a));
                 }
             }

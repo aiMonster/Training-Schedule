@@ -11,7 +11,7 @@ namespace TrainingSchedule
 {
     public partial class App : Application
     {
-        public const string WORKOUT_DATABASE_NAME = "trainings.db";
+        public const string WORKOUT_DATABASE_NAME = "workouts.db";
         public static WorkoutRepository workoutDatabase;
         public static WorkoutRepository WorkoutDatabase
         {
@@ -24,6 +24,37 @@ namespace TrainingSchedule
                 return workoutDatabase;
             }
         }
+
+
+
+        public const string EXERCISE_DATABASE_NAME = "exercises.db";
+        public static ExerciseRepository exerciseDatabase;
+        public static ExerciseRepository ExerciseDatabase
+        {
+            get
+            {
+                if (exerciseDatabase == null)
+                {
+                    exerciseDatabase = new ExerciseRepository(WORKOUT_DATABASE_NAME);
+                }
+                return exerciseDatabase;
+            }
+        }
+
+        public const string SET_DATABASE_NAME = "sets.db";
+        public static SetRepository setDatabase;
+        public static SetRepository SetDatabase
+        {
+            get
+            {
+                if (setDatabase == null)
+                {
+                    setDatabase = new SetRepository(SET_DATABASE_NAME);
+                }
+                return setDatabase;
+            }
+        }
+
 
         public App()
         {

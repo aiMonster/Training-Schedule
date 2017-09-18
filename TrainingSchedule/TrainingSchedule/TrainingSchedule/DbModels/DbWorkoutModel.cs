@@ -13,7 +13,8 @@ namespace TrainingSchedule.DbModels
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
 
-        public string trainingId { get; set; }        
+        public string trainingId { get; set; }
+        public DateTime lastTrainingDate { get; set; }
         public string Title { get; set; }
     }
 }

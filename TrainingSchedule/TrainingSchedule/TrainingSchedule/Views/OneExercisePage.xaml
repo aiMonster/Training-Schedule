@@ -11,27 +11,28 @@
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,0,0,15">
             <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
-                <StackLayout Orientation="Horizontal">
-                    <Entry Placeholder="reps" FontSize="Large"/>
-                    <Label Text="*" FontSize="Large"/>
-                    <Entry Placeholder="kgs" FontSize="Large"/>
-                </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
-                    <Entry Placeholder="reps" FontSize="Large"/>
-                    <Label Text="*" FontSize="Large"/>
-                    <Entry Placeholder="kgs" FontSize="Large"/>
-                </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
-                    <Entry Placeholder="reps" FontSize="Large"/>
-                    <Label Text="*" FontSize="Large"/>
-                    <Entry Placeholder="kgs" FontSize="Large"/>
-                </StackLayout>
+                <ListView ItemsSource="{Binding RepsKgsList}" HasUnevenRows="True" SeparatorColor="Purple" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Entry Placeholder="reps" Text="{Binding Reps}" Keyboard="Numeric" FontSize="Large"/>
+                                        <Label Text="*" FontSize="Large"/>
+                                        <Entry Placeholder="kgs" FontSize="Large" Keyboard="Numeric" Text="{Binding Kgs}"/>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Entry Placeholder="Comment" Text="{Binding Comment}" HorizontalTextAlignment="Center" FontSize="Large" VerticalOptions="Center"/>
 
             </StackLayout>
             <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                <Button Text="Add"   BackgroundColor="#A9FFAC"/>
+                <Button Text="Add" Command="{Binding AddCommand}"  BackgroundColor="#A9FFAC"/>
             </StackLayout>
         </StackLayout>
 
@@ -46,6 +47,7 @@
                             <StackLayout HorizontalOptions="Center">
                                 <Label Text="{Binding trainingData}" FontSize="Large" HorizontalTextAlignment="Center" TextColor="#00897B"/>
                                 <Label Text="{Binding Path=setDate, StringFormat='{}{0:dddd - dd/MM/yyyy}'}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#455A64" />
+                                <Label Text="{Binding comment}" FontSize="Medium" HorizontalTextAlignment="Start" TextColor="LightBlue"/>
                                 <!--<Label Text="{Binding condition}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Blue" />
                                 <Label Text="{Binding date}" FontSize="Small" HorizontalTextAlignment="Center" TextColor="Green"/>-->
 
@@ -64,5 +66,6 @@
                 <Button Text="Start"   BackgroundColor="#A9FFAC"/>
             </StackLayout>
         </StackLayout>
-        </StackLayout>
+        
+    </StackLayout>
 </ContentPage>

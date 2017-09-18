@@ -29,7 +29,7 @@ namespace TrainingSchedule.Views
             if (e.SelectedItem != null)
             {
                 WorkoutModel model = (WorkoutModel)e.SelectedItem;
-                ((ListView)sender).SelectedItem = null;
+                ((ListView)sender).SelectedItem = null;                
                 await Navigation.PushModalAsync(new ExercisesPage(model));
             }
 

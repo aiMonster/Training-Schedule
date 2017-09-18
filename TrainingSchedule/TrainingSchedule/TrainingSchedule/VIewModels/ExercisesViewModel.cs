@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingSchedule.Models;
+using TrainingSchedule.DbManager;
 
 namespace TrainingSchedule.VIewModels
 {
@@ -55,25 +56,28 @@ namespace TrainingSchedule.VIewModels
         public async void OnAppearing(object sender, EventArgs e)
         {
 
-            List<ExerciseModel> tmpList = new List<ExerciseModel>();
-            tmpList.Add(new ExerciseModel() { titleExcercice = "Присідання зі штангою", isDoneToday=true});
-            tmpList.Add(new ExerciseModel() { titleExcercice = "Жим лежачи і тому подібнні речі", isDoneToday=true });
-            tmpList.Add(new ExerciseModel() { titleExcercice = "Розводи гантелями", isDoneToday= false });
-            tmpList.Add(new ExerciseModel() { titleExcercice = "Жим вузьким хватом", isDoneToday = true });
-            
+            List<ExerciseModel> tmpList = new List<ExerciseModel>();           
 
-            //try
-            //{
-            //    await App.Database.CreateTable();
-            //    foreach (var a in await App.Database.GetItemsAsync())
-            //    {
-            //        tmpList.Insert(0, a);
-            //    }
-            //}
-            //catch
-            //{
-            //    await App.Current.MainPage.DisplayAlert("Oops, something wrong!", "We couldn't read data from dataBase, write to developer", "OK");
-            //}
+
+            try
+            {
+                await App.ExerciseDatabase.CreateTable();
+                foreach (var a in await App.ExerciseDatabase.GetItemsAsync())
+                {
+                    if (a.trainingId.StartsWith(Convert.ToString(workoutModel.trainingId)))
+                    {
+                        if(a.lastTrainingDate.Date == DateTime.Today.Date)
+                        {
+                            a.isDoneToday = true;
+                        }
+                        tmpList.Add(toDbModelConverter.Convert(a));
+                    }                    
+                }
+            }
+            catch
+            {
+                await App.Current.MainPage.DisplayAlert("Oops, something wrong!", "We couldn't read data from dataBase, write to developer", "OK");
+            }
 
             if (tmpList.Count == 0)
             {

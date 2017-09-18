@@ -38,13 +38,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DbManager\ExerciseRepository.cs" />
     <Compile Include="DbManager\ISQLite.cs" />
+    <Compile Include="DbManager\SetRepository.cs" />
     <Compile Include="DbManager\toDbModelConverter.cs" />
     <Compile Include="DbManager\WorkoutRepository.cs" />
     <Compile Include="DbModels\DbExerciseModel.cs" />
     <Compile Include="DbModels\DbSetModel.cs" />
     <Compile Include="DbModels\DbWorkoutModel.cs" />
     <Compile Include="Models\ExerciseModel.cs" />
+    <Compile Include="Models\RepsKgsModel.cs" />
     <Compile Include="Models\SetModel.cs" />
     <Compile Include="Models\WorkoutModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

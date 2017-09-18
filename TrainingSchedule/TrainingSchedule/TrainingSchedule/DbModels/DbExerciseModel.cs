@@ -10,8 +10,14 @@ namespace TrainingSchedule.DbModels
     [Table("Exercise")]
     public class DbExerciseModel
     {
-        public string Id { get; set; }
+        [PrimaryKey, AutoIncrement, Column("_id")]
+        public int Id { get; set; }
+
         
+        public bool isDoneToday { get; set; }
+        public int amountOfSets { get; set; }
+        public DateTime lastTrainingDate { get; set; }
+        public string trainingId { get; set; }
         public string Title { get; set; }         
     }
 }

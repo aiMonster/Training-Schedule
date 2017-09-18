@@ -46,7 +46,8 @@ namespace TrainingSchedule.DbManager
             }
             else
             {
-                return await database.InsertAsync(item);
+                await database.InsertAsync(item);
+                return item.Id;
             }
         }
     }

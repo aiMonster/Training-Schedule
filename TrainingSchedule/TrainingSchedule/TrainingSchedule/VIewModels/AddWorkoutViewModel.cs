@@ -8,34 +8,95 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using TrainingSchedule.DbModels;
 
+
 namespace TrainingSchedule.VIewModels
 {
     public  class AddWorkoutViewModel : INotifyPropertyChanged
     {
         public ICommand SaveCommand { get; set; }
+        public ICommand AddCommand { get; set; }
+        public ICommand RemoveCommand { get; set; }
         public INavigation Navigation { get; set; }
+        private List<DbExerciseModel> exerciseList { get; set; }
         private string mainTitle { get; set; }
 
         public AddWorkoutViewModel()
         {
+            exerciseList = new List<DbExerciseModel>();
+            exerciseList.Add(new DbExerciseModel());
             this.SaveCommand = new Command(Save);
+            this.AddCommand = new Command(Add);
+            this.RemoveCommand = new Command(Remove);
         }
+
+
+        public void Add()
+        {
+            List<DbExerciseModel> tmpList = new List<DbExerciseModel>(exerciseList);
+            tmpList.Add(new DbExerciseModel());
+            ExerciseList = tmpList;
+
+        }
+
+        public async void Remove()
+        {
+            if(exerciseList.Count <=1 )
+            {
+                await App.Current.MainPage.DisplayAlert("Oops!", "Can't remove anymore rows!", "OK");
+                return;
+            }
+            List<DbExerciseModel> tmpList = new List<DbExerciseModel>(exerciseList);
+            tmpList.Remove(tmpList.Last());
+            ExerciseList = tmpList;
+        }
+
+
+        public List<DbExerciseModel> ExerciseList
+        {
+            get { return exerciseList; }
+            set
+            {
+                if(exerciseList != value)
+                {
+                    exerciseList = value;
+                    OnPropertyChanged("ExerciseList");
+                }
+            }
+        }
+
 
 
         public async void Save()
         {
             DbWorkoutModel model = new DbWorkoutModel();
-            model.Title = mainTitle;
+            List<DbExerciseModel> exercises = new List<DbExerciseModel>();
+            
+            foreach(var a in exerciseList)
+            {
+                if(a.Title == "" || String.IsNullOrEmpty(a.Title))
+                {
+                    await App.Current.MainPage.DisplayAlert("Oops!", "You didn't fill all exercises!", "OK");
+                    return;
+                }
+                exercises.Add(a);
 
+            }
+
+            model.Title = mainTitle;
+           
             //saving to db
             try
-            {
-               int id =  await App.WorkoutDatabase.SaveItemAsync(model);
-               model.Id = id;
-               model.trainingId = id + "_";
-                await App.WorkoutDatabase.SaveItemAsync(model);
+            {              
+               int id = await App.WorkoutDatabase.SaveItemAsync(model);  
+                
+                foreach(var a in exercises)
+                {
+                    
+                    int tmpid = await App.ExerciseDatabase.SaveItemAsync(a);
+                    a.trainingId = id + "_" + tmpid + "_";
+                    await App.ExerciseDatabase.SaveItemAsync(a);
 
-
+                }            
             }
             catch
             {
