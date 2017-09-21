@@ -4,15 +4,15 @@
              x:Class="TrainingSchedule.Views.AddWorkoutPage">
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="Title" Text="{Binding MainTitle}" />
+            <Entry Placeholder="Workout title" HorizontalTextAlignment="Center" Margin="10" BackgroundColor="LightSteelBlue" Text="{Binding MainTitle}" />
 
-            <ListView  ItemsSource="{Binding ExerciseList}" SeparatorVisibility="None" IsEnabled="False" VerticalOptions="Center" HasUnevenRows="True">
+            <ListView  ItemsSource="{Binding ExerciseList}"  SeparatorVisibility="None" VerticalOptions="Center">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout HorizontalOptions="Center" Orientation="Horizontal" Margin="0,0,0,10">
-                                    <Entry Placeholder="name of exercise" Text="{Binding Title}" HorizontalTextAlignment="Center" BackgroundColor="LightBlue" FontSize="Large" VerticalOptions="Center"/>
+                                <StackLayout HorizontalOptions="CenterAndExpand"  Orientation="Horizontal" Margin="0,3">
+                                    <Entry Placeholder="name of exercise" WidthRequest="230" Text="{Binding Title}" HorizontalTextAlignment="Center" BackgroundColor="LightBlue" FontSize="Large" VerticalOptions="Center"/>
                                     <Entry Placeholder="sets" Text="{Binding amountOfSets}" HorizontalTextAlignment="Center" BackgroundColor="LightYellow" FontSize="Large" VerticalOptions="Center" Keyboard="Numeric"/>
                                 </StackLayout>
                             </ViewCell.View>
@@ -21,10 +21,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-
-
-
-            <StackLayout Orientation="Horizontal" Margin="0,5,0,0" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal" Margin="5,0" Spacing="0" VerticalOptions="End" HorizontalOptions="FillAndExpand">
                 <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
                     <Button Text="Add" Command="{Binding AddCommand}"  BackgroundColor="#A9FFAC"/>
                 </StackLayout>
@@ -33,7 +30,7 @@
                 </StackLayout>
             </StackLayout>
 
-            <Button Text="Save" Command="{Binding SaveCommand}"/>
+            <Button Text="Save" Margin="5" Command="{Binding SaveCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

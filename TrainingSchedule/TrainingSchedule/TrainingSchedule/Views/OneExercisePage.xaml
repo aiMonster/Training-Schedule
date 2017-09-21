@@ -48,8 +48,6 @@
                                 <Label Text="{Binding trainingData}" FontSize="Large" HorizontalTextAlignment="Center" TextColor="#00897B"/>
                                 <Label Text="{Binding Path=setDate, StringFormat='{}{0:dddd - dd/MM/yyyy}'}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#455A64" />
                                 <Label Text="{Binding comment}" FontSize="Medium" HorizontalTextAlignment="Start" TextColor="LightBlue"/>
-                                <!--<Label Text="{Binding condition}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Blue" />
-                                <Label Text="{Binding date}" FontSize="Small" HorizontalTextAlignment="Center" TextColor="Green"/>-->
 
                             </StackLayout>
                         </ViewCell.View>

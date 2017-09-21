@@ -14,15 +14,14 @@ namespace TrainingSchedule.VIewModels
 {
     class WorkoutsViewModel : INotifyPropertyChanged
     {
-        public ICommand AddCommand { get; set; }
-        public ICommand RemoveCommand { get; set; }
+        public ICommand AddCommand { get; set; } //to add new workout        
         public INavigation Navigation { get; set; }
         List<WorkoutModel> workoutsList { get; set; }
         private bool isEmpty { get; set; }
+
         public WorkoutsViewModel()
         {
-            this.AddCommand = new Command(Add);
-            this.RemoveCommand = new Command(Remove);
+            this.AddCommand = new Command(Add);            
             workoutsList = new List<WorkoutModel>();            
         }
 
@@ -37,23 +36,7 @@ namespace TrainingSchedule.VIewModels
                     OnPropertyChanged("IsEmpty");
                 }
             }
-        }
-
-        public async void Remove()
-        {            
-            try
-            {
-                await App.WorkoutDatabase.CreateTable();
-                foreach (var a in await App.WorkoutDatabase.GetItemsAsync())
-                {
-                    await App.WorkoutDatabase.DeleteItemAsync(a);
-                }
-            }
-            catch
-            {
-                await App.Current.MainPage.DisplayAlert("Oops, something wrong!", "We couldn't read data from dataBase, write to developer", "OK");
-            }
-        }
+        }        
 
         public async void Add()
         {

@@ -28,6 +28,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        
+        <Button Text="Remove" Command="{Binding RemoveCommand}"  BackgroundColor="#FF7172"/>
     </StackLayout>
 </ContentPage>

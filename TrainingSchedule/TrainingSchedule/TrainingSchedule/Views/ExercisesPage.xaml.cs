@@ -19,6 +19,7 @@ namespace TrainingSchedule.Views
         public ExercisesPage(WorkoutModel model)
         {
             ExercisesViewModel em = new ExercisesViewModel(model);
+            em.Navigation = Navigation;
             base.Appearing += (o, e) => em.OnAppearing(o, e);
             BindingContext = em;            
             InitializeComponent();

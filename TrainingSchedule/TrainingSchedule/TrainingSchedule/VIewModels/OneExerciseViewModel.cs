@@ -41,8 +41,6 @@ namespace TrainingSchedule.VIewModels
         }
 
 
-
-
         public string Comment
         {
             get { return comment; }
@@ -71,7 +69,6 @@ namespace TrainingSchedule.VIewModels
 
         public async void Add()
         {
-
             DbSetModel setModel = new DbSetModel();
             setModel.Date = DateTime.Now;
             setModel.comment = comment;
@@ -84,6 +81,28 @@ namespace TrainingSchedule.VIewModels
             string[] ids = exerciseModel.trainingId.Split('_');
             setModel.trainingData = trainingData;
             setModel.trainingId = exerciseModel.trainingId;
+
+
+            bool answer = await App.Current.MainPage.DisplayAlert("Is data correct?",trainingData + "\n\n" + comment, "Yes", "No");
+
+            if (!answer)
+            {
+                return;
+            }
+
+            if(setsList.Count != 0)
+            {
+                if (setsList.First().setDate.Date == DateTime.Now.Date)
+                {
+                    bool dateAnswer = await App.Current.MainPage.DisplayAlert("Caution!", "You have already done this exercise today, do you want to add else one entry?", "Yes", "No");
+
+                    if (!dateAnswer)
+                    {
+                        return;
+                    }
+                }
+            }
+
 
             try
             {
@@ -118,27 +137,17 @@ namespace TrainingSchedule.VIewModels
                 await App.Current.MainPage.DisplayAlert("Oops, something wrong!", "We couldn't save expression to dataBase, write to developer", "OK");
             }
 
+            Comment = "";
+            List<RepsKgsModel> tmpKgList = new List<RepsKgsModel>(repsKgsList);
+            foreach (var a in tmpKgList)
+            {
+                a.Kgs = "";
+                a.Reps = "";
+            }
+            RepsKgsList = tmpKgList;
+
             OnAppearing(new object(), new EventArgs());
 
-
-
-
-            //foreach(int a in repsArray)
-            //{
-            //    if(a <= 0)
-            //    {
-            //        await App.Current.MainPage.DisplayAlert("Oops!", "Impossible amount of repeats!", "OK");
-            //        return;
-            //    }
-            //}
-            //foreach(double a in kgsArray)
-            //{
-            //    if(a<=0)
-            //    {
-            //        await App.Current.MainPage.DisplayAlert("Oops!", "Impossible weight!", "OK");
-            //        return;
-            //    }
-            //}
         }
 
         public List<SetModel> SetsList

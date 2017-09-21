@@ -6,20 +6,59 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingSchedule.Models;
 using TrainingSchedule.DbManager;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace TrainingSchedule.VIewModels
 {
     class ExercisesViewModel : INotifyPropertyChanged
     {
 
+        public ICommand RemoveCommand { get; set; }
+        public INavigation Navigation { get; set; }
         List<ExerciseModel> exercisesList { get; set; }
         private WorkoutModel workoutModel { get; set; }
         private bool isEmpty { get; set; }
 
         public ExercisesViewModel(WorkoutModel workoutModel)
         {
+            this.RemoveCommand = new Command(Remove);
             this.workoutModel = workoutModel;
             exercisesList = workoutModel.listOfExercises;
+        }
+
+
+        public async void Remove()
+        {
+            bool answer = await App.Current.MainPage.DisplayAlert("Caution!", "Do you really want to delete - " + workoutModel.titleWorkout, "Yes", "No");
+
+            if(!answer)
+            {
+                return;
+            }
+
+            try
+            {
+                string[] ids = workoutModel.trainingId.Split('_');
+                int id = Convert.ToInt32(ids[0]);
+                await App.WorkoutDatabase.CreateTable();
+                foreach (var a in await App.WorkoutDatabase.GetItemsAsync())
+                {
+                    if(a.Id == id)
+                    {
+                        await App.WorkoutDatabase.DeleteItemAsync(a);
+                        //await App.Current.MainPage.DisplayAlert("Done!", "Removed sucsessfully!", "OK");
+                        await Navigation.PopModalAsync();
+                        return;
+                    }
+                    
+                }
+                
+            }
+            catch
+            {
+                await App.Current.MainPage.DisplayAlert("Oops, something wrong!", "We couldn't read data from dataBase, write to developer", "OK");
+            }
         }
 
         public string WorkoutTitle
@@ -56,8 +95,7 @@ namespace TrainingSchedule.VIewModels
         public async void OnAppearing(object sender, EventArgs e)
         {
 
-            List<ExerciseModel> tmpList = new List<ExerciseModel>();           
-
+            List<ExerciseModel> tmpList = new List<ExerciseModel>();         
 
             try
             {

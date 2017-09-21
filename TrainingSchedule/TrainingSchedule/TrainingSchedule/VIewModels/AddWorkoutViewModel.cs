@@ -35,7 +35,6 @@ namespace TrainingSchedule.VIewModels
             List<DbExerciseModel> tmpList = new List<DbExerciseModel>(exerciseList);
             tmpList.Add(new DbExerciseModel());
             ExerciseList = tmpList;
-
         }
 
         public async void Remove()
@@ -49,8 +48,7 @@ namespace TrainingSchedule.VIewModels
             tmpList.Remove(tmpList.Last());
             ExerciseList = tmpList;
         }
-
-
+        
         public List<DbExerciseModel> ExerciseList
         {
             get { return exerciseList; }
@@ -70,7 +68,13 @@ namespace TrainingSchedule.VIewModels
         {
             DbWorkoutModel model = new DbWorkoutModel();
             List<DbExerciseModel> exercises = new List<DbExerciseModel>();
-            
+            if(mainTitle == "" || String.IsNullOrEmpty(mainTitle))
+            {
+                await App.Current.MainPage.DisplayAlert("Oops!", "You didn't fill Workout title!", "OK");
+                return;
+            }
+
+            string exercisesNames = "";
             foreach(var a in exerciseList)
             {
                 if(a.Title == "" || String.IsNullOrEmpty(a.Title))
@@ -78,12 +82,29 @@ namespace TrainingSchedule.VIewModels
                     await App.Current.MainPage.DisplayAlert("Oops!", "You didn't fill all exercises!", "OK");
                     return;
                 }
-                exercises.Add(a);
+                if(a.amountOfSets <= 0)
+                {
+                    await App.Current.MainPage.DisplayAlert("Oops!", "In " + a.Title + " exercise amount of sets cannot be <= 0!", "OK");
+                    return;
+                }
 
+                exercisesNames += a.Title + " *" + a.amountOfSets + " sets\n";
+                exercises.Add(a);
             }
 
             model.Title = mainTitle;
-           
+
+
+            bool answer = await App.Current.MainPage.DisplayAlert("Caution!", "Do you really want to save " + mainTitle + " with such exercises:\n" + exercisesNames, "Yes", "No");
+
+            if (!answer)
+            {
+                return;
+            }
+
+
+
+
             //saving to db
             try
             {              
@@ -120,9 +141,6 @@ namespace TrainingSchedule.VIewModels
                 }
             }
         }
-
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propName)
