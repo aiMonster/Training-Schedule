@@ -9,16 +9,15 @@
             <Label Text="{Binding ExerciseTitle}" FontSize="Large" HorizontalTextAlignment="Center"/>
         </StackLayout>
 
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,0,0,15">
+        <Entry Placeholder="Comment" Text="{Binding Comment}" HorizontalTextAlignment="Center" FontSize="Large" VerticalOptions="Center"/>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="0" Margin="0">            
             <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
-
-
-                <ListView ItemsSource="{Binding RepsKgsList}" HasUnevenRows="True" SeparatorColor="Purple" >
+                <ListView ItemsSource="{Binding RepsKgsList}" SeparatorVisibility="None" HasUnevenRows="True" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.View>
-                                    <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                                         <Entry Placeholder="reps" Text="{Binding Reps}" Keyboard="Numeric" FontSize="Large"/>
                                         <Label Text="*" FontSize="Large"/>
                                         <Entry Placeholder="kgs" FontSize="Large" Keyboard="Numeric" Text="{Binding Kgs}"/>
@@ -27,18 +26,17 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
-                <Entry Placeholder="Comment" Text="{Binding Comment}" HorizontalTextAlignment="Center" FontSize="Large" VerticalOptions="Center"/>
-
+                </ListView>               
             </StackLayout>
-            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                <Button Text="Add" Command="{Binding AddCommand}"  BackgroundColor="#A9FFAC"/>
+            
+            <StackLayout Orientation="Vertical" VerticalOptions="Center"  HorizontalOptions="FillAndExpand">
+                <Button Text="Add" Command="{Binding AddCommand}" Margin="10,0"  BackgroundColor="#A9FFAC"/>
             </StackLayout>
         </StackLayout>
+        <BoxView Color="#00E676" HeightRequest="5" Margin="0"/>
 
 
         <Label Text="No entries" FontSize="Large" Margin="10, 50" TextColor="Coral" HorizontalTextAlignment="Center" IsVisible="{Binding IsEmpty}"/>
-                
         <ListView x:Name="SetsList" ItemsSource="{Binding SetsList}" HasUnevenRows="True" SeparatorColor="Purple" >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -47,7 +45,7 @@
                             <StackLayout HorizontalOptions="Center">
                                 <Label Text="{Binding trainingData}" FontSize="Large" HorizontalTextAlignment="Center" TextColor="#00897B"/>
                                 <Label Text="{Binding Path=setDate, StringFormat='{}{0:dddd - dd/MM/yyyy}'}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#455A64" />
-                                <Label Text="{Binding comment}" FontSize="Medium" HorizontalTextAlignment="Start" TextColor="LightBlue"/>
+                                <Label Text="{Binding comment}" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#6E7CFF"/>
 
                             </StackLayout>
                         </ViewCell.View>
@@ -56,14 +54,16 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <BoxView Color="#00E676" HeightRequest="5" Margin="0"/>        
         <StackLayout Orientation="Horizontal" Margin="0,5,0,0" VerticalOptions="End" HorizontalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                <Label Text="00:00" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Text="{Binding StopWatch}" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
             <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-                <Button Text="Start"   BackgroundColor="#A9FFAC"/>
+                <Button Text="{Binding StopWatchName}" Command="{Binding StartStopCommand}" IsEnabled="{Binding IsStartStopEnabled}"  BackgroundColor="{Binding GetColor}"/>
             </StackLayout>
         </StackLayout>
+        
         
     </StackLayout>
 </ContentPage>

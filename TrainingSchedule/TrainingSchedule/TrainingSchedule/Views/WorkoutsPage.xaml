@@ -23,7 +23,7 @@
             </ListView.ItemTemplate>
         </ListView>
         
-        <Button Text="Add" Command="{Binding AddCommand}" VerticalOptions="End" BackgroundColor="#A9FFAC"/> 
+        <Button Text="Add new workout" Command="{Binding AddCommand}" VerticalOptions="End" BackgroundColor="#A9FFAC"/> 
         
     </StackLayout>
     

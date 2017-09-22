@@ -9,21 +9,89 @@ using TrainingSchedule.DbManager;
 using TrainingSchedule.Models;
 using TrainingSchedule.DbModels;
 using Xamarin.Forms;
+using System.Threading;
 
 namespace TrainingSchedule.VIewModels
 {
     class OneExerciseViewModel : INotifyPropertyChanged
     {
         public ICommand AddCommand { get; set; }
+        public ICommand StartStopCommand { get; set; }
         List<SetModel> setsList { get; set; }
         List<RepsKgsModel> repsKgsList { get; set; }
+        private int stopWatchSeconds { get; set; }
         private string comment { get; set; }
+        private Color getColor { get; set; }
+        private bool isStartStopEnabled {get; set;}
+
+
         
         private ExerciseModel exerciseModel { get; set; }
         private bool isEmpty { get; set; }
 
+
+        public Color GetColor
+        {
+            get
+            {
+                return getColor;
+            }
+            set
+            {
+                if(getColor != value)
+                {
+                    getColor = value;
+                    OnPropertyChanged("GetColor");
+                }
+            }
+        }
+
+        public string StopWatchName
+        {
+            get
+            {
+                if(stopWatchSeconds == 0)
+                {
+                    return "START";
+                }
+                else
+                {
+                    return "STOP";
+                }
+            }
+        }
+
+        public string StopWatch
+        {
+            get
+            {
+                return Convert.ToString(stopWatchSeconds);
+            }
+        }
+
+        public bool IsStartStopEnabled
+        {
+            get
+            {
+                return isStartStopEnabled;
+            }
+            set
+            {
+                if (isStartStopEnabled != value)
+                {
+                    isStartStopEnabled = value;
+                    OnPropertyChanged("IsStartStopEnabled");
+
+                }
+            }
+        }
+
+
         public OneExerciseViewModel(ExerciseModel exerciseModel)
         {
+            isStartStopEnabled = true;
+            getColor = Color.FromHex("#A9FFAC");
+            this.StartStopCommand = new Command(StartStop);
             this.AddCommand = new Command(Add);
             this.exerciseModel = exerciseModel;
             setsList = exerciseModel.listOfSets;
@@ -39,6 +107,47 @@ namespace TrainingSchedule.VIewModels
         {
             get { return exerciseModel.titleExcercice; }
         }
+
+        public async void StartStop()
+        {
+            IsStartStopEnabled = false;
+            if (stopWatchSeconds == 0)
+            {
+                //starting counting
+                OnPropertyChanged("StopWatchName");
+                GetColor = Color.FromHex("#E86F61");
+
+                stopWatchSeconds++;
+                //IsStartStopEnabled = true;
+                OnPropertyChanged("StopWatch");
+                
+                await Task.Delay(1000);
+                while (stopWatchSeconds != 0)
+                { 
+                    stopWatchSeconds++;                    
+                    OnPropertyChanged("StopWatch");                   
+                    if (stopWatchSeconds > 2)
+                    {
+                        IsStartStopEnabled = true;
+                    }
+                    await Task.Delay(1000);
+                }
+                
+            }
+            else
+            {
+                //stopping counting
+                stopWatchSeconds = 0;
+                IsStartStopEnabled = true;
+                GetColor = Color.FromHex("#A9FFAC");
+                OnPropertyChanged("StopWatch");
+                OnPropertyChanged("StopWatchName");
+            }
+            
+            
+            
+        }
+
 
 
         public string Comment
